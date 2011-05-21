@@ -1,0 +1,11 @@
+services:
+    data_collector.twigdata:
+        class: CoreSphere\TwigProfilerBundle\DataCollector\TwigDataCollector
+        public: false
+        arguments: [@twig]
+        tags:
+            - { name: data_collector, template: "CoreSphereTwigProfilerBundle:Collector:twigdata", id: "twigdata" }
+
+    templating.engine.twig:
+        class: CoreSphere\TwigProfilerBundle\TwigProfiledEngine
+        arguments: [@twig, @templating.name_parser, @templating.globals, @data_collector.twigdata]

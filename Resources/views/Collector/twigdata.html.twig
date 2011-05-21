@@ -1,0 +1,100 @@
+{% extends 'WebProfilerBundle:Profiler:layout.html.twig' %}
+
+{% block toolbar %}
+{% set icon %}
+    <img width="20" height="28" alt="Twig" style="border-width: 0; vertical-align: middle; margin-right: 5px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAcCAYAAAEW3a/2AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+    bWFnZVJlYWR5ccllPAAAAUZJREFUeNpi/P//PwMMsICI2tra/4cPH2ZgAnFADBBgRFYGEEBwDouD
+    g8N/W1tbhFq4FEAAgRk7d+5E6IIJgvQgCzLBGAcOHABjEAAIIBT74M5DN8/d3Z0R7Ob29nZkQYiZ
+    MLNgNBMDFgAWBDqJAZnGajtAAGEVxAbALgI5FdlV6ADoKEYmNAEGXHwUhcD4YcDFR1HY3NzMgIsP
+    9wx6bKC7kWhfAwQQ0QqZGIgE8HDEpQAU/TiTFUkBjh74OAMcPfCJ9gxKKoflKliuwRrXoMQIylsw
+    AGLDEih5ViNnaHQ2SSZSP64BAoxoE8nyNDUAC4xBKGcTAqCESJQL8ZUIJHkZpBE99SCnMFwGUz0M
+    mXC5DpSt0FMjcioFyWNzJVYDQd4ClXXImQcZgMRB8ujBQT8v43MlPtehpENchmILP1yGDY2sR3UD
+    ARK6tgzsfBIzAAAAAElFTkSuQmCC"/>
+{% endset %}
+{% include 'WebProfilerBundle:Profiler:toolbar_item.html.twig' with { 'link': profiler_url } %}
+{% endblock %}
+
+{% block menu %}
+<span class="label">
+    <span class="icon"><img src="{{ asset('bundles/corespheretwigprofiler/images/profiler/template.png') }}" alt="" /></span>
+    <strong>Twig</strong>
+</span>
+{% endblock %}
+
+{% block panel %}
+    <h2>Templates</h2>
+
+    {% for template in collector.templates %}
+        <h3>{{ template.name }}</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Variable</th>
+                </tr>
+            </thead>
+            {% for variable in template.variables %}
+            <tr>
+                <td>{{ variable }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endfor %}
+
+    <h2>Extensions</h2>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Class</th>
+      </tr>
+      {% for name, class in collector.extensions %}
+          <tr><td>{{ name }}</td><td>{{ class }}</td></tr>
+      {% endfor %}
+    </table>
+
+    <h2>Filters</h2>
+
+    <h3>Functions</h3>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Function</th>
+      </tr>
+      {% for name, function in collector.filterfunctions %}
+          <tr><td>{{ name }}</td><td>{{ function }}</td></tr>
+      {% endfor %}
+    </table>
+    <h3>Methods</h3>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Class</th>
+      </tr>
+      {% for name, class in collector.filtermethods %}
+          <tr><td>{{ name }}</td><td>{{ class }}</td></tr>
+      {% endfor %}
+    </table>
+
+    <h2>Functions</h2>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Function</th>
+      </tr>
+      {% for name, function in collector.functions %}
+          <tr><td>{{ name }}</td><td>{{ function }}</td></tr>
+      {% endfor %}
+    </table>
+
+    <h2>Methods</h2>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Class</th>
+      </tr>
+      {% for name, class in collector.methods %}
+          <tr><td>{{ name }}</td><td>{{ class }}</td></tr>
+      {% endfor %}
+    </table>
+
+
+{% endblock %}
