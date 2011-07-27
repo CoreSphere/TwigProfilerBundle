@@ -64,7 +64,7 @@ class TwigDataCollector extends DataCollector
         $meths = array();
         foreach ($this->retrieveProperty($this->templating, 'functions') as $key => $value)
         {
-            if ($value instanceof \Twig_Filter_Function)
+            if ($value instanceof \Twig_Function_Function)
             {
                 $funcs[$key] = $this->retrieveProperty($value,'function');
             }
