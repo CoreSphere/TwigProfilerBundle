@@ -1,27 +1,26 @@
 {
 	"name": "coresphere/twig-profiler-bundle",
 	"description": "Collects information about the twig rendering process in Symfony 2 and provides it to WebProfilerBundle.",
-    "autoload": {
-        "psr-0": {
-            "CoreSphere\\TwigProfilerBundle": ""
-        }
-    },
-    "target-dir": "CoreSphere/TwigProfilerBundle",
-	"require":
-	{
-		"twig": "*",
-		"symfony/WebProfilerBundle": "*"
+	"autoload": {
+		"psr-0": {
+			"CoreSphere\\TwigProfilerBundle": ""
+		}
+    	},
+	"target-dir": "CoreSphere/TwigProfilerBundle",
+	"require": {
+		"twig/twig": "~1.11",
+		"symfony/web-profiler-bundle": "~2.4.1"
 	},
 	"authors": [
-        {
-            "name": "Laszlo Korte",
-            "email": "me@laszlokorte.de"
-        },
-        {
-            "name": "Markus Ullmann",
-            "email": "mail@markus-ullmann.de"
-        }
-    ],
+		{
+			"name": "Laszlo Korte",
+			"email": "me@laszlokorte.de"
+		},
+		{
+			"name": "Markus Ullmann",
+			"email": "mail@markus-ullmann.de"
+		}
+	],
 	"extra":
 	{
 		"branch-alias":
