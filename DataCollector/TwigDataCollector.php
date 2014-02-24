@@ -45,13 +45,25 @@ class TwigDataCollector extends DataCollector
         $meths = array();
         foreach ($this->retrieveProperty($this->templating, 'filters') as $key => $value)
         {
-            if ($value instanceof \Twig_Filter_Function)
-            {
+            if ($value instanceof \Twig_Filter_Function) {
+
                 $funcs[$key] = $this->retrieveProperty($value,'function');
-            }
-            else
-            {
-                $meths[$key] = get_class($this->retrieveProperty($value,'extension')) . "::" . $this->retrieveProperty($value,'method');
+
+            } else if ($value instanceof \Twig_SimpleFunction) {
+
+                $funcs[$key] = get_class($value) . '::' . $this->retrieveProperty($value, 'name');
+
+            } else {
+
+                try {
+
+                    $meths[$key] = get_class($this->retrieveProperty($value,'extension')) . "::" . $this->retrieveProperty($value,'method');
+                    
+                } catch (\Exception $e) {
+
+                    // extension property does not exist?
+
+                }
             }
         }
         ksort($funcs);
@@ -64,13 +76,25 @@ class TwigDataCollector extends DataCollector
         $meths = array();
         foreach ($this->retrieveProperty($this->templating, 'functions') as $key => $value)
         {
-            if ($value instanceof \Twig_Function_Function)
-            {
+            if ($value instanceof \Twig_Function_Function) {
+
                 $funcs[$key] = $this->retrieveProperty($value,'function');
-            }
-            else
-            {
-                $meths[$key] = get_class($this->retrieveProperty($value,'extension')) . "::" . $this->retrieveProperty($value,'method');
+
+            } else if ($value instanceof \Twig_SimpleFunction) {
+
+                $funcs[$key] = get_class($value) . '::' . $this->retrieveProperty($value, 'name');
+
+            } else {
+
+                try {
+
+                    $meths[$key] = get_class($this->retrieveProperty($value,'extension')) . "::" . $this->retrieveProperty($value,'method');
+
+                } catch (\Exception $e) {
+
+                    // Extension property does not exist?
+
+                }
             }
         }
         ksort($funcs);
